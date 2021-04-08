@@ -39,6 +39,6 @@ jobs:
           image: alequesada2012/java-ci-pipeline
           tags: v1, latest
           registry: docker.io
-          dockerfile: Dockerfile
+          dockerfile: Dockerfile.ci
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
