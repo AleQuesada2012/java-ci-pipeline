@@ -29,8 +29,19 @@ jobs:
   docker-deployment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        name: Check out code
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
 
-      - name: Docker Build & Push Action
-        uses: mr-smithers-excellent/docker-build-push@v5
+      - name: Docker Build & Push to Docker Hub
+        uses: timzu/act-docker@master
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKERFILE: "Dockerfile"
+          IMAGE_NAME: "alequesada2012/java-ci-pipeline"
+          TAG_NAME: "v0.0.1"
+          LATEST: "true"
